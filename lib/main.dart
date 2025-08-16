@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,8 +45,10 @@ class _MyHomePageState extends State<MyHomePage> {
           // 計算を行う（簡易的に例として eval 風に）
           try {
             final result = _calculate(input);
-            input = result.toString();
-          } catch (e) {
+            input = (result.isFinite)
+              ? (result % 1 == 0 ? result.toInt().toString() : result.toString())
+              : 'Error';
+          } catch (_) {
             input = 'Error';
           }
         }
@@ -56,15 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   double _calculate(String expression) {
-    // 簡易計算処理： +,-,*,/ のみサポート（安全なパーサーではありません）
-    // ※後で拡張する場合は `math_expressions` パッケージなどが便利
-    try {
-      expression = expression.replaceAll('×', '*').replaceAll('÷', '/');
-      final result = double.parse(expression); // 本来は安全にパースする処理が必要
-      return result;
-    } catch (_) {
-      return 0;
-    }
+    final expStr = expression.replaceAll('×', '*').replaceAll('÷', '/');
+    final parser = Parser();
+    final exp = parser.parse(expStr);   // 例: 2+3*4 を正しくパース
+    final cm = ContextModel();
+    final v = exp.evaluate(EvaluationType.REAL, cm);
+    return (v is num) ? v.toDouble() : double.nan;
   }
 
   Widget _buildButton(String text) {
