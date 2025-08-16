@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   double _calculate(String expression) {
     final expStr = expression.replaceAll('×', '*').replaceAll('÷', '/');
-    final parser = Parser();
+    final parser = ShuntingYardParser();
     final exp = parser.parse(expStr);   // 例: 2+3*4 を正しくパース
     final cm = ContextModel();
     final v = exp.evaluate(EvaluationType.REAL, cm);
