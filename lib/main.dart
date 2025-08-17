@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'secret_gallery_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,10 +38,13 @@ class _MyHomePageState extends State<MyHomePage> {
         input = '';
       } else if (value == '=') {
         if (input == '1234') {
-          // 秘密コードを検出！今後ここにギャラリー画面へ遷移するコードを追加予定
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('秘密の画面に遷移します！（仮）')),
-          );
+          final nav = Navigator.of(context);
+          input = ''; // 表示は消しておくとバレにくい
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            nav.push(
+              MaterialPageRoute(builder: (_) => const SecretGalleryPage()),
+            );
+          });
         } else {
           // 計算を行う（簡易的に例として eval 風に）
           try {
