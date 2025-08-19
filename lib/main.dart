@@ -1,5 +1,7 @@
 エラー出たので、いっこ前に戻す
 やっぱり、端末のバージョン変えたりしたので、エラー内容を理解しつつ一つずつエラー解消する。
+一回githubのソースに合わせてから動くように修正。
+一つずつエラー内容を理解してから進める。
 
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
