@@ -79,7 +79,7 @@ class _SecretGalleryPageState extends State<SecretGalleryPage> {
       },
     );
     if (name == null || name.isEmpty) return;
-    final safe = name.replaceAll(RegExp(r"[\\/:*?\"<>|]"), '_');
+    final safe = name.replaceAll(RegExp(r'[\\/:*?\"<>|]'), '_');
     final newDir = Directory('${_currentDir!.path}/$safe');
     if (!await newDir.exists()) {
       await newDir.create(recursive: true);
