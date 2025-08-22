@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'secret_gallery_page.dart';
+import 'package:characters/characters.dart';
 
 void main() {
   runApp(const MyApp());
@@ -100,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final expStr = expression
         .replaceAll('×', '*')
         .replaceAll('÷', '/');
-    final parser = ShuntingYardParser();
+    final parser = Parser();
     final exp = parser.parse(expStr);
     final cm = ContextModel();
     final v = exp.evaluate(EvaluationType.REAL, cm);
