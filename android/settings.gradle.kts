@@ -16,9 +16,9 @@ pluginManagement {
     }
 
     plugins {
-        id("com.android.application") version "8.3.2" //宣言
-        id("com.android.library") version "8.3.2" //宣言
-        id("org.jetbrains.kotlin.android") version "1.9.22" //宣言
+        id("com.android.application") version "8.7.3" //宣言
+        id("com.android.library") version "8.7.3" //宣言
+        id("org.jetbrains.kotlin.android") version "2.1.0" //宣言
         id("dev.flutter.flutter-gradle-plugin") version "1.0.0" //宣言
     }
 }
