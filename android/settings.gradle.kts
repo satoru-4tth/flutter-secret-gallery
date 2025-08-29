@@ -14,13 +14,18 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+
+    plugins {
+        id("com.android.application") version "8.3.2" //宣言
+        id("com.android.library") version "8.3.2" //宣言
+        id("org.jetbrains.kotlin.android") version "1.9.22" //宣言
+        id("dev.flutter.flutter-gradle-plugin") version "1.0.0" //宣言
+    }
 }
 
+
 plugins {
-    id("com.android.application") version "8.3.2"
-    id("com.android.library") version "8.3.2"
-    id("org.jetbrains.kotlin.android") version "1.9.22"
-    id("dev.flutter.flutter-gradle-plugin") version "1.0.0"
+    id("dev.flutter.flutter-plugin-loader") version "1.0.0"  // Flutter 固有の読み込み
 }
 
 include(":app")
