@@ -1,3 +1,4 @@
+println(">>> Gradle=" + gradle.gradleVersion)
 allprojects {
     repositories {
         google()
