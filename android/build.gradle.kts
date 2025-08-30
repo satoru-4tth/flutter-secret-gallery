@@ -5,17 +5,14 @@ allprojects {
     }
 }
 
-val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
-rootProject.layout.buildDirectory.value(newBuildDir)
+// ✅ projectDirectory を基準にする（自己参照しない）
+val rootBuildDirProvider = layout.projectDirectory.dir("../../build")
+layout.buildDirectory.set(rootBuildDirProvider)
 
 subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
-}
-subprojects {
-    project.evaluationDependsOn(":app")
+    layout.buildDirectory.set(rootProject.layout.buildDirectory.dir(name))
 }
 
 tasks.register<Delete>("clean") {
-    delete(rootProject.layout.buildDirectory)
+    delete(layout.buildDirectory)
 }
